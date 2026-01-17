@@ -10,8 +10,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.Literal;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.util.Version;
 import ch.njol.util.Kleenean;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -26,7 +26,7 @@ import java.util.Locale;
 	"Please note that currently 'show' and 'open' have the same effect, but 'show' will eventually show an unmodifiable view of the inventory in the future."})
 @Examples({"show the victim's inventory to the player",
 	"open the player's inventory for the player"})
-@Since("2.0, 2.1.1 (closing), 2.2-Fixes-V10 (anvil), 2.4 (hopper, dropper, dispenser")
+@Since("2.0, 2.1.1 (closing), 2.2-Fixes-V10 (anvil), 2.4 (hopper, dropper, dispenser), 2.14.0 (using more stable api)")
 public class EffOpenInventory extends Effect {
 
 	static {
@@ -113,9 +113,14 @@ public class EffOpenInventory extends Effect {
 	private static void openInventoryType(Player player, InventoryType type) {
 
 		if (HAS_MENU_TYPE) {
-			if (type.getMenuType() != null) {
-				player.openInventory(type.getMenuType().create(player, Component.empty()));
-				return;
+			// Even though the actual api was added in 1.21.1, back then there wasn't support for creating inventory views with a null title.
+			// Fallback to the older Bukkit api is thus done to avoid errors.
+			// see https://github.com/PaperMC/Paper/blob/fbea3cdc0caca69814e5ab68b981fa0bdbe5331d/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
+			if (Skript.getMinecraftVersion().isSmallerThan(new Version(1, 21, 3))) {
+				if (type.getMenuType() != null) {
+					player.openInventory(type.getMenuType().create(player, null));
+					return;
+				}
 			}
 		}
 
