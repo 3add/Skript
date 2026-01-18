@@ -94,7 +94,7 @@ public class EffOpenInventory extends Effect {
 		if (target == null)
 			return;
 
-		final Player[] targetPlayers = this.players.getArray(event);
+		Player[] targetPlayers = this.players.getArray(event);
 
 		if (target instanceof Inventory inventory) {
 			for (Player player : targetPlayers) {
