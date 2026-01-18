@@ -37,8 +37,8 @@ public class EffOpenInventory extends Effect {
 
 	// Even though the actual api was added in 1.21.1, back then there wasn't support for creating inventory views with a null title.
 	// Fallback to the older Bukkit api is thus done to avoid errors.
-	// see https://github.com/PaperMC/Paper/blob/fbea3cdc0caca69814e5ab68b981fa0bdbe5331d/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
-	// fixed here https://github.com/PaperMC/Paper/blob/8eb8e44ac32a99f53da7af50e800ac8831030580/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
+	// See bugged (1.21.1 - 1.21.3): https://github.com/PaperMC/Paper/blob/fbea3cdc0caca69814e5ab68b981fa0bdbe5331d/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
+	// See Fixed (1.21.4+): https://github.com/PaperMC/Paper/blob/8eb8e44ac32a99f53da7af50e800ac8831030580/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
 	private static final boolean SUPPORT_MENU_TYPE = Skript.classExists("org.bukkit.inventory.MenuType")
 		&& Skript.getMinecraftVersion().isLargerThan(new Version(1, 21, 3));
 
