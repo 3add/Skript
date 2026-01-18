@@ -115,10 +115,6 @@ public class EffOpenInventory extends Effect {
 	@SuppressWarnings("UnstableApiUsage")
 	private void openInventoryType(Player player, InventoryType type) {
 
-		if (!type.isCreatable()) {
-			error("You can't open a " + Classes.toString(type) + " inventory to players.");
-		}
-
 		if (SUPPORT_MENU_TYPE) {
 			if (type.getMenuType() != null) {
 				player.openInventory(type.getMenuType().create(player, null));
