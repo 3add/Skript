@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 	"Please note that currently 'show' and 'open' have the same effect, but 'show' will eventually show an unmodifiable view of the inventory in the future."})
 @Example("show the victim's inventory to the player")
 @Example("open the player's inventory for the player")
-@Since("2.0, 2.1.1 (closing), 2.2-Fixes-V10 (anvil), 2.4 (hopper, dropper, dispenser), 2.14.0 (using more stable api)")
+@Since("2.0, 2.1.1 (closing), 2.2-Fixes-V10 (anvil), 2.4 (hopper, dropper, dispenser)")
 public class EffOpenInventory extends Effect {
 
 	private static final Patterns<InventoryType> PATTERNS = new Patterns<>(new Object[][]{
