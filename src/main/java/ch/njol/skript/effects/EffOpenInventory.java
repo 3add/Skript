@@ -32,12 +32,12 @@ public class EffOpenInventory extends Effect {
 		{"close (%players%'[s] inventory [view]|[the] inventory [view] (to|of|for) %players%)", null},
 		{"(open|show) %inventory% (to|for) %players%", null},
 		{"open %inventorytype% (to|for) %players%", null},
-		{"open (crafting table|workbench) (to|for) %players%", InventoryType.WORKBENCH},
-		{"open chest (to|for) %players%", InventoryType.CHEST},
-		{"open anvil (to|for) %players%", InventoryType.ANVIL},
-		{"open hopper (to|for) %players%", InventoryType.HOPPER},
-		{"open dropper (to|for) %players%", InventoryType.DROPPER},
-		{"open dispenser (to|for) %players%", InventoryType.DISPENSER}
+		{"open [a] (crafting table|workbench) (to|for) %players%", InventoryType.WORKBENCH},
+		{"open [a] chest (to|for) %players%", InventoryType.CHEST},
+		{"open [an] anvil (to|for) %players%", InventoryType.ANVIL},
+		{"open [a] hopper (to|for) %players%", InventoryType.HOPPER},
+		{"open [a] dropper (to|for) %players%", InventoryType.DROPPER},
+		{"open [a] dispenser (to|for) %players%", InventoryType.DISPENSER}
 	});
 
 	static {
