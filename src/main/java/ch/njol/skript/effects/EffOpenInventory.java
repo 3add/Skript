@@ -9,6 +9,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.Literal;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.Patterns;
 import ch.njol.skript.util.Version;
 import ch.njol.util.Kleenean;
@@ -120,10 +121,20 @@ public class EffOpenInventory extends Effect {
 	}
 
 	@Override
-	public String toString(final @Nullable Event e, final boolean debug) {
-		// TODO improve toString for inventory types and inventories
-		return (open
-			? "open " + (inventoryExpr != null ? inventoryExpr.toString(e, debug) : "crafting table") + " to "
-			: "close inventory view of ") + players.toString(e, debug);
+	public String toString(final @Nullable Event event, final boolean debug) {
+		if (!open) {
+			return "close inventory view of " + players.toString(event, debug);
+		}
+
+		String openedThing;
+		if (inventoryExpr != null) {
+			openedThing = inventoryExpr.toString(event, debug);
+		} else if (inventoryType != null) {
+			openedThing = inventoryType.name().toLowerCase().replace('_', ' ');
+		} else {
+			openedThing = "inventory";
+		}
+
+		return "open " + openedThing + " to " + players.toString(event, debug);
 	}
 }
