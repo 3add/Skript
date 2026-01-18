@@ -34,7 +34,7 @@ public class EffOpenInventory extends Effect {
 		{"open %inventorytype% (to|for) %players%", null},
 		{"open [a] (crafting table|workbench) (to|for) %players%", InventoryType.WORKBENCH},
 		{"open [a] chest (to|for) %players%", InventoryType.CHEST},
-		{"open [an] anvil (to|for) %players%", InventoryType.ANVIL},
+		{"open [a[n]] anvil (to|for) %players%", InventoryType.ANVIL},
 		{"open [a] hopper (to|for) %players%", InventoryType.HOPPER},
 		{"open [a] dropper (to|for) %players%", InventoryType.DROPPER},
 		{"open [a] dispenser (to|for) %players%", InventoryType.DISPENSER}
