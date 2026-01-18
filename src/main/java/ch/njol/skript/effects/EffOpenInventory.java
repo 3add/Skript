@@ -139,7 +139,7 @@ public class EffOpenInventory extends Effect {
 		if (inventoryExpr != null) {
 			openedThing = inventoryExpr.toString(event, debug);
 		} else if (inventoryType != null) {
-			openedThing = Classes.toString(inventoryType);
+			openedThing = inventoryType.name().toLowerCase().replace('_', ' ');
 		} else {
 			openedThing = "inventory";
 		}
