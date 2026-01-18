@@ -21,7 +21,7 @@ import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Open/Close Inventory")
-@Description({"Opens an inventory to a player. The player can then access and modify the inventory as if it was a chest that he just opened.",
+@Description({"Opens an inventory to a player. The player can then access and modify the inventory as if it was a chest that they just opened.",
 		"Please note that currently 'show' and 'open' have the same effect, but 'show' will eventually show an unmodifiable view of the inventory in the future."})
 @Example("show the victim's inventory to the player")
 @Example("open the player's inventory for the player")
