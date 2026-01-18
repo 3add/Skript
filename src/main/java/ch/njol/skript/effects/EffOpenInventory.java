@@ -72,7 +72,11 @@ public class EffOpenInventory extends Effect {
 
 		players = (Expression<Player>) exprs[exprs.length - 1];
 
-		return !(exprs[0] instanceof Literal<?> lit) || !(lit.getSingle() instanceof InventoryType type) || type.isCreatable();
+		if (exprs[0] instanceof Literal<?> lit && lit.getSingle() instanceof InventoryType type && !type.isCreatable()) {
+			Skript.error("Cannot create an inventory of type " + Classes.toString(type));
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -109,7 +113,12 @@ public class EffOpenInventory extends Effect {
 	}
 
 	@SuppressWarnings("UnstableApiUsage")
-	private static void openInventoryType(Player player, InventoryType type) {
+	private void openInventoryType(Player player, InventoryType type) {
+
+		if (!type.isCreatable()) {
+			error("You can't open a " + Classes.toString(type) + " inventory to players.");
+		}
+
 		if (SUPPORT_MENU_TYPE) {
 			if (type.getMenuType() != null) {
 				player.openInventory(type.getMenuType().create(player, null));
