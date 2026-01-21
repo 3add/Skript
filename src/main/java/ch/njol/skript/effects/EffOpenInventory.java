@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Open/Close Inventory")
 @Description({"Opens an inventory to a player. The player can then access and modify the inventory as if it was a chest that they just opened.",
-		"Please note that currently 'show' and 'open' have the same effect, but 'show' will eventually show an unmodifiable view of the inventory in the future."})
+	"Please note that currently 'show' and 'open' have the same effect, but 'show' will eventually show an unmodifiable view of the inventory in the future."})
 @Example("show the victim's inventory to the player")
 @Example("open the player's inventory for the player")
 @Since("2.0, 2.1.1 (closing), 2.2-Fixes-V10 (anvil), 2.4 (hopper, dropper, dispenser)")
@@ -30,8 +30,7 @@ public class EffOpenInventory extends Effect {
 
 	private static final Patterns<InventoryType> PATTERNS = new Patterns<>(new Object[][]{
 		{"close (%players%'[s] inventory [view]|[the] inventory [view] (to|of|for) %players%)", null},
-		{"(open|show) %inventory% (to|for) %players%", null},
-		{"open %inventorytype% (to|for) %players%", null},
+		{"open %inventory/inventorytype% (to|for) %players%", null},
 		{"open [a] (crafting table|workbench) (to|for) %players%", InventoryType.WORKBENCH},
 		{"open [a] chest (to|for) %players%", InventoryType.CHEST},
 		{"open [a[n]] anvil (to|for) %players%", InventoryType.ANVIL},
@@ -49,7 +48,7 @@ public class EffOpenInventory extends Effect {
 	// See bugged (1.21.1 - 1.21.3): https://github.com/PaperMC/Paper/blob/fbea3cdc0caca69814e5ab68b981fa0bdbe5331d/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
 	// See Fixed (1.21.4+): https://github.com/PaperMC/Paper/blob/8eb8e44ac32a99f53da7af50e800ac8831030580/paper-server/src/main/java/org/bukkit/craftbukkit/inventory/CraftMenuType.java
 	private static final boolean SUPPORT_MENU_TYPE = Skript.classExists("org.bukkit.inventory.MenuType")
-												  && Skript.getMinecraftVersion().isLargerThan(new Version(1, 21, 3));
+		&& Skript.getMinecraftVersion().isLargerThan(new Version(1, 21, 3));
 
 	private boolean open;
 	private @Nullable InventoryType inventoryType = null;
@@ -63,7 +62,7 @@ public class EffOpenInventory extends Effect {
 
 		open = matchedPattern != 0;
 		if (open) {
-			if (matchedPattern <= 2) {
+			if (matchedPattern <= 1) {
 				inventoryExpr = exprs[0];
 			} else {
 				inventoryType = PATTERNS.getInfo(matchedPattern);
