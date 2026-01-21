@@ -30,8 +30,7 @@ public class EffOpenInventory extends Effect {
 
 	private static final Patterns<InventoryType> PATTERNS = new Patterns<>(new Object[][]{
 		{"close (%players%'[s] inventory [view]|[the] inventory [view] (to|of|for) %players%)", null},
-		{"(open|show) %inventory% (to|for) %players%", null},
-		{"open %inventorytype% (to|for) %players%", null},
+		{"open %inventory/inventorytype% (to|for) %players%", null},
 		{"open [a] (crafting table|workbench) (to|for) %players%", InventoryType.WORKBENCH},
 		{"open [a] chest (to|for) %players%", InventoryType.CHEST},
 		{"open [a[n]] anvil (to|for) %players%", InventoryType.ANVIL},
@@ -63,7 +62,7 @@ public class EffOpenInventory extends Effect {
 
 		open = matchedPattern != 0;
 		if (open) {
-			if (matchedPattern <= 2) {
+			if (matchedPattern <= 1) {
 				inventoryExpr = exprs[0];
 			} else {
 				inventoryType = PATTERNS.getInfo(matchedPattern);
