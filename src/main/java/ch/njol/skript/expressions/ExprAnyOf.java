@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 })
 @Example("if any of {_numbers::*} are 1:")
 @Example("if any of {teamA::*} are within location(0, 0, 0) and location(10, 10, 10):")
-@Since("2.11.0")
+@Since("2.11")
 public class ExprAnyOf extends WrapperExpression<Object> {
 
 	static {
